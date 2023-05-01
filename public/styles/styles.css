@@ -1,0 +1,53 @@
+html {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .playlist-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  #playlist-div {
+    margin-bottom: 1.7rem;
+  }
+  
+  .song-wrapper {
+    text-align: center;
+  }
+  
+  button {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    background-color: rgb(45, 106, 143);
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  input {
+    padding: 7px 10px 7px 5px;
+  }
+  
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td,
+  th {
+    border: 1px solid rgb(16, 15, 15);
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #submit-button {
+    margin-bottom: 2rem;
+  }
+  
+  .up-arrow,
+  .remove-button{
+    margin-right: 0.3rem;
+  }
+  

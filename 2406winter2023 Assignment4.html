@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>2406</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;	
+	margin-left:80px;
+	margin-right:80px;
+}
+h1, h2, h3 {
+	font-weight: bold;
+	color: blue;
+}
+p {
+		font-size: large;
+}
+
+.red {
+	color: #F00;
+}
+.bold {
+	font-weight: bold;
+}
+.requirement {
+	font-weight: bold;
+	background-color: #6AF37A;
+}
+.requirement_danger {
+	font-weight: bold;
+	background-color: #F47272
+}
+.requirement_warning {
+	font-weight: bold;
+	background-color: #F6CA54
+}
+.code {
+	font-family: "Courier New", Courier, monospace;
+}
+.requirement_warning1 {	font-weight: bold;
+	background-color: #F7BD36
+}
+</style>
+</head>
+<body>
+  <div class="container">
+<h1>COMP 2406 Winter 2023</h1>
+<h1>Assignment 4: API-based Express.js Server</h1>
+<h1 class="red">Due Wed. Mar. 29 by 10:00pm submitted to <a href="https://brightspace.carleton.ca">brightspace</a></h1>
+<hr width="100%">
+<p class="red">Assignment
+  Revisions and Corrections will be noted here. </p>
+<p class="red">&nbsp;</p>
+<hr>
+<h2>Express.js Music Server</h2>
+<p>The purpose of this assignment is to give you practice building a node.js application that accesses a public API, and uses the express.js framework. For this assignment you are given a choice to make either a thin client or a thick client solution.</p>
+<p>This assignment is based on Tutorial 07 and the course notes 14 on   creating express.js applications.</p>
+<p>The components are:</p>
+<p >Server build with  Node.js and the Express.js framework. </p>
+<p >Public iTunes JSON API.</p>
+<p >Client-side application page served by the server.</p>
+<p >Either a thin client or thick client solution:<br>
+  <br>
+  <span class="bold">Thin Client</span> -The client is expecting the server to provide it with rendered html pages. That is, the server creates the HTML web pages based on client requests. The client simply renders the html pages.</p>
+<p ><span class="bold">Thick Client</span> -
+  The client is expecting to ask the server for JSON data and it will use client-side javascript to manipulate the DOM (HTML elements) directly. That is, the server is not rendering HTML.</p>
+<p >Assignment restrictions: <br>
+</p>
+<p class="red">You are free to use express.js and whatever other npm modules you find useful though no other ones are really necessary for the assignment.</p>
+<hr width="100%">
+<p><span class="badge-danger">Marking:</span> This assignment
+is based on <span class="badge-danger">20</span> design requirements numbered <span class="badge-success"><span class="requirement">R1.1</span></span>...<span class="badge-success"><span class="requirement">R3.7</span></span> for a total of <span class="badge-danger"><span class="red">40</span></span> marks. </p>
+<p>Marks are awarded, or deducted, based on requirements as follows. Note: TAs will be running and evaluating your assignment code so we are not requesting a demonstration video for the four term assignments(only for the final project).</p>
+<table border="1">
+  <tr>
+    <th width="83">Req Type</th>
+    <th width="716">Assignment Grading</th>
+  </tr>
+  <tr>
+    <td><span class="requirement_danger">R0.x</span></td>
+    <td><p><span class="requirement_danger">Critical Submission and Intent Requirements.</span> Assignment gets 0 if <span class="bold">any</span> critical submission requirement (shown in red) is not met.<br>
+    </p></td>
+  </tr>
+  <tr>
+    <td><span class="requirement_warning">R0.x</span></td>
+    <td><p><span class="requirement_warning">Good Practice Requirements.</span> You lose 2 marks for each good practice requirement (shown in amber) not met.<br>
+    </p></td>
+  </tr>
+  <tr>
+    <td><span class="requirement">Rx.x</span></td>
+    <td><p><span class="requirement">Design Requirements.</span> You earn 2 marks for each design requirement (green) satisfied and well implemented; 1 mark if it's partly met or met but not well implemented; and 0 if it's not met or attempted.</p></td>
+  </tr>
+</table>
+<hr>
+<h2>Submission and Good Programming Practice Requirements</h2>
+<p>The following requirements pertain to all 
+  your assignments regardless of what your application is supposed to do (i.e. 
+  regardless of the design requirements). These requirements are to ensure that 
+  your code is usable, readable, and maintainable.</p>
+<p class="text-danger"><span class="badge badge-danger"><span class="requirement_danger">R0.0</span></span> <span class="red">UNIQUENESS REQUIREMENT. The solution 
+  and code you submit MUST be unique. That is, it cannot be a copy of, or be too 
+  similar to, someone else's code, or other code found elsewhere. You are, however, free to use any code posted on our course website as 
+  part of our assignment solution. <span class="font-weight-bold">[Assignment mark =0 if this requirement is not met.]</span></span></p>
+<p class="text-danger"><span class="badge badge-danger"><span class="requirement_danger">R0.1</span></span> <span class="red">CODE SUBMISSION ORGANIZATION AND COMPILATION: You should submit all the code files and data files necessary to compile and run your app. The TA's will execute your app by following the instructions you provide in the <span class="code">README.txt</span> file. You must submit a single<span class="code">.zip</span> formatted file to brightspace. (not .rar or .tar or whatever). Though you are permitted to write code on Windows, Linux, or Mac OS the code must be generic enough to be OS agnostic. (See also the the requirement below about not submitting the <span class="code">node_modules</span> directory). Your code must work with at least a current Chrome browser and version 16.x.x of node.js<br>
+  <span class="font-weight-bold">[Assignment mark =0 if this requirement is not met.]</span></span></p>
+<p class="text-danger"><span class="badge badge-danger"><span class="requirement_danger">R0.2</span></span> <span class="red">README FILE: Your submission MUST include a <span class="code">README.txt</span> file (with .txt extension) telling the TA how to setup and
+  run your app. <span class="font-weight-bold">The TA will NOT look into your code to figure out how to start up your app.</span> Here are the critical things your <span class="code">README.txt</span> MUST contain:</span></p>
+<ul>
+  <li>
+    <p class="text-danger"><span class="red"><span class="font-weight-bold">MUST: Your name, student number. (This is where you claim to be the author.)</span></span></p>
+  </li>
+  <li>
+    <p class="text-danger"><span class="red"><span class="font-weight-bold">MUST: If your code requires external modules (like npm modules) you must tell us what command to run to install them. (e.g. </span><code>npm install</code> or <code>npm install module_name</code>)</span></p>
+  </li>
+  <li>
+    <p class="text-danger"><span class="red"><span class="font-weight-bold">MUST: You must tell us how to launch your server. That is, what command to exectute to launch your code (</span>e.g. <code>node server.js</code>. )</span></p>
+  </li>
+  <li>
+    <p class="text-danger"> <span class="red"><span class="font-weight-bold">MUST: You must tell us what URL to visit with the browser to use your app. (</span>e.g. visit:</span><span
+						class="code">http://localhost:3000/mytest.html?name=Louis</span><span class="red">.)</span></p>
+  </li>
+  <p class="text-danger"><span class="red"> If any of the MUST have items are missing we will not grade your assignment (the mark will be 0).</span></p>
+  <p class="text-danger"><span class="red">RECOMMENDED: The following  are recommend but the assignment will still be graded if they are missing. </span></p>
+  <li>
+    <p class="text-danger"><span class="red">Recommended: Have your server output to the console what URLs we should visit with the browser.</span></p>
+    <p class="text-danger"><img src="images/R0.2.png" width="558" height="142" alt="" /></p>
+  </li>
+  <li>
+    <p class="text-danger"><span class="red"><span class="font-weight-bold">Recommended: Version:</span> node.js version number and operating system you tested on your code on.</span></p>
+  </li>
+  <li>
+    <p class="text-danger"><span class="red"><span class="font-weight-bold">Recommended: Version:</span> node.js version number and operating system you tested on your code on.</span></p>
+  </li>
+  <p class="text-danger"><span class="red"><span class="font-weight-bold">[Assignment mark =0 if this requirement is not met.]</span></span></p>
+</ul>
+<p class="text-danger"><span class="badge badge-danger"><span class="requirement_danger">R0.3</span></span> <span class="red">INTENT REQUIREMENT: The solution 
+  and code you submit must comply with the intent of the assignment. For example if you are required to build a node.js/javascript server and you choose to build an apache/PHP server instead you will have violated the intent of the assignment even though the user input-output experience might be the same. As another example, if you are asked to build a &quot;thick client&quot; solution where the server just supplies data and the browser renders it but you build a &quot;thin client&quot; solution where the server renders all the HTML pages you will have violated the intent even though the user's experience would look the same. <br>
+</span><span class="red"> <span class="font-weight-bold">[Assignment mark =0 if this requirement is not met.]</span></span></p>
+<p class="text-danger">&nbsp;</p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.4</span></span> <span class="bold">VARIABLE AND FUNCTION NAMES:</span> All of 
+  your variables and functions should have meaningful names that reflect 
+  their purpose. Don't follow the convention common in math courses where they 
+  say things like: &quot;let x be the number of customers and let y be the number of 
+  products...&quot;. Instead call your variables <strong>numberOfCustomers</strong> or <strong>numberOfProducts</strong>. Your program should not have any variables 
+  called &quot;x&quot; unless there is a good reason for them to be called &quot;x&quot;. (One 
+  exception: It's OK to call simple for-loop counters i,j and k etc. when the 
+  context is clear and VERY localized.) Javascript variables don't have types which can help clarify their meaning so choosing good names is even more important. Many functions in javascript are annonymous (have no name) and so the name of the variable that refers to them is even more important.</p>
+<p>Remember: any fool can write code that a computer will understand; the goal is to write code that we can understand. <span class="font-weight-bold"><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></span></p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.5</span></span> <span class="bold">JAVASCRIPT IN STATIC HTML:</span> Your static html pages should NOT make direct reference to javascript functions. Don't do something like the following:</p>
+<pre>&lt;button type="button" onclick="myFunction()"&gt;Try it&lt;/button&gt;</pre>
+<p>Instead do something like this:</p>
+<pre>&lt;button type="button" id="submit_button"&gt;Try it&lt;/button&gt;</pre>
+<p>and elsewhere in your javascript file say:<br>
+</p>
+<pre>document.getElementById('submit_button').addEventListener('click', myFunction)
+</pre>
+<p><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.6</span></span> <span class="bold">COMMENTS:</span> Comments in your code 
+  must coincide with what the code actually does. It is a  common bug to modify or cut-and-paste code and forget to modify the comments and so you 
+  end up with comments that say one thing and code that actually does another. Don't over-comment your code - instead choose good variable names 
+  and function names that make the code  &quot;self commenting&quot;. Don't be reluctant to create local variables  so that the variable name provides more clarity -there is no prize for having the fewest lines of code. <span class="font-weight-bold"><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></span></p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.7</span></span> <span class="bold">MODULARIZATION:</span> Your client-side and server-side javascript should not be in two giant files. Break you client-side javascript into smaller manageable and readable  files and include them individually with <span class="code">&lt;script&gt;</span> tags in your html document. On the server-side use <span class="code">requires</span> or <span class="code">imports</span> appropriately to organize your code into managable size files. <span class="font-weight-bold"><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></span></p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.8</span></span> <span class="bold">BLOATED CODE:</span> If your assigment uses external modules installed with npm, <span class="bold">DON'T</span> submit the <span class="code">node_modules</span> directory with your code (it's potentially huge).  Remove that directory and only submit the <span class="code">package.json</span> and <span class="code">package-lock.json</span> files. The TAs will use these files to intall the required modules. NPM modules are platform specific and must be reinstalled on the markers platform (they would have to remove your <span class="code">node_modules</span> directory). <span class="font-weight-bold"><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></span></p>
+<p><span class="badge badge-warning"><span class="requirement_warning">R0.9</span></span> <span class="bold">CITATION REQUIREMENT:</span> If you use code from other sources you should cite the source in comments that appear with the code. If the source is an internet website then put the URL in the comments. You may use bits of code from outside sources but this may not form the complete solution you are handing in.You DON'T have to cite demo code we provide on the course web site or with tutorials and assignments, however that code should not be used for things you post publicly (like on GitHub). <span class="font-weight-bold"><span class="red">[Minus 2 marks from assignment if this requirement is not met.]</span></span></p>
+<p class="red">VERY IMPORTANT: Any 
+  sample code fragments provided may have bugs (although none are put there intentionally). You must be prepared to find errors in the 
+  requirements and sample code. Please report errors so they can be fixed and an assignment 
+  revision posted.</p>
+<hr>
+<h1>Application Requirements</h1>
+<h2>Background</h2>
+<p>Public HTTP-based API's (often referred to as RESTful API's) have become very popular. They typically serve JSON or XML data based on client HTTP requests. They also respect the stateless nature of HTTP -the client provides everything in each query that the server needs to respond. API's don't typically serve web-pages rather they serve XML or JSON data that other servers or &quot;thick&quot; clients can use to populate web pages. Or, in the internet of things, maybe no web pages are ever involved. API's are nice because their data can be consumed and repackaged in many different ways (browsers, mobile apps, IoT devices). </p>
+<p>We want to build a client-server app that uses the iTunes API for providing the details of recorded songs based on querying by song title. This is based on the work you would have done in tutorial 07. </p>
+<p>The client webpage should look something like the following (subject to the requirements provided). Notice in this application you will be adding buttons dynamically as new song data is obtained. That is, the buttons cannot be laid out on the page ahead of time.</p>
+<p>&nbsp;</p>
+<p><img src="images/page_layout.png" alt="pics"></p>
+<h2>Application Requirements</h2>
+<h2>1) Server-Side Requirements</h2>
+<p><span class="badge badge-success"><span class="requirement">R1.1</span></span> The server should be built as an Express.js application. It could be a very simple or minimal express app or use many express features -no particular complexity is specified.</p>
+<p><span class="badge badge-success"><span class="requirement">R1.2</span></span> The server application should make use of a <span class="code">package.json</span> file to specify all the npm modules needed by your app (possibly only express.js) The marker should be able to install all the modules by executing <span class="code">npm install</span>. DO NOT submit installed npm modules with your assignment. We want to install those ourselves and keep the submitted code size small. In other words, don't submit your <span class="code">node_modules</span> directory with your code.</p>
+<p><span class="badge badge-success"><span class="requirement">R1.3</span></span> Your <span class="code">package.json</span> file should list specific version numbers of the modules you install. Don't have it install &quot;the latest&quot; modules. You must be specific about the version number. You may, however, use the optimitic version numbering if you want (i.e. the version number with the ^ character in front of it.)</p>
+<p><span class="badge badge-success"><span class="requirement">R1.4</span></span> With Express.js and package.json comes new ways of launching your server app. Up until now we have always lauched with the command <span class="code">node server.js</span>. Make sure your <span class="code">README.txt</span> file tells us <span class="bold">exactly</span> how to launch your app;   the marker will not be expected to try and figure it out. Also include the instructions for installing the npm modules you need in your <span class="code">README.txt</span> file.</p>
+<p><span class="badge badge-success"><span class="requirement">R1.5</span></span> The server should obtain song information from the <span class="bold">iTunes </span>public API. (This API does not require an APP ID.) Note if you want to substitute a different music API like SoundCloud or Spotify that is OK as long as it can meet the requirements of the assignment. The client should have no directly interaction with the API. That is, the client should not be aware of what API your server is using (the server should be able to switch to another API without affecting the client).</p>
+<p><span class="badge badge-success"><span class="requirement">R1.6</span></span> If your server needs to serve static files to the client then it should provide a static server using the <span class="code">express use(express.static ...) </span><span class="bold">middleware</span>. If your application does not require a static server part then you don't need to provide this and the requirement will be deemed met.</p>
+<p><span class="badge badge-success"><span class="requirement">R1.7</span></span> The amount of song data served by the server should be  at most 20 songs for any search request. If the API queries provide too much data the server should reduce it to 20 that way the client can be coded to render, or show, all the data provided by the server.</p>
+<p></p>
+<h2>2) Client Layout Requirements</h2>
+<p><span class="badge badge-success"><span class="requirement">R2.1</span></span> The client webpage should have three areas: a Playlist area, an Input Area, and a Search Results area. The Playlist area should be at the top of the page, the Input Area below that and the Search Results area at the bottom. <span class="code"></span>The Playlist area should have a heading: &quot;Playlist&quot; and the Search results area should have a heading &quot;Songs matching: Body And Soul&quot; in which the heading shows the song title being matched.</p>
+<p><span class="badge badge-success"><span class="requirement">R2.2</span></span> The playlist area should have a heading as described above and a table of songs representing the user's playlist. The table should have four columns. Column one should contain three buttons. The first button should be labelled &quot;-&quot;, the second with some kind of &quot;up arrow&quot; icon character and the third with some kind of &quot;down arrow&quot; icon character. These buttons are intended to be used to 1) remove a song from the playlist, 2) move a song up in the playlist order, and 3) move a song down in the playlist order. The second column should show the title of the song. The third column should show the artist. The fourth column should show an image of the song recording's artwork. It is up to you whether the table is shown with borders or not.</p>
+<p><span class="badge badge-success"><span class="requirement">R2.3</span></span> The button labels should be actual icon characters. For example: 🔽 or 🔼. The labels should not be words or single letters like "U" for up and "D" for down. (Note the &quot;+&quot; and &quot;-&quot;<br>
+buttons could be labelled with ASCII characters.) There are lots of examples of labeling things with unicode characters at the W3 schools site. For example:&nbsp;<a href="https://www.w3schools.com/charsets/ref_emoji.asp">https://www.w3schools.com/charsets/ref_emoji.asp</a> </p>
+<p><span class="badge badge-success"><span class="requirement">R2.4</span></span> The input area should consist of a label: &quot;Enter Song Title:&quot;, a textfield where the user can enter a song title and a <span class="bold">Submit</span> button.</p>
+<p><span class="badge badge-success"><span class="requirement">R2.5</span></span> The song search area should have a heading as described above and a table of songs representing the search results. The table should have four columns. Column one should contain a button labelled &quot;+&quot;. This button is intended to be used to add the song to the user's plalylist. The second column should show the title of the song. The third column should show the artist. The fourth column should show an image of the song's artwork. It is up to you whether the table is shown with borders or not.</p>
+<p>&nbsp;</p>
+<h2>3) Client Behaviour Requirements</h2>
+<p><span class="badge badge-success"><span class="requirement">R3.1</span></span> The client should be able to reach the server at any of the following URL's <br>
+<span class="code">http://localhost:3000/mytunes.html</span><br>
+<span class="code">http://localhost:3000/mytunes</span><br>
+<span class="code">http://localhost:3000/index.html</span><br>
+<span class="code">http://localhost:3000/</span><br>
+<span class="code">http://localhost:3000</span></p>
+<p>That is, all those routes should amount to the same thing. Here you need to figure out the best way to handle multiple URL's that should resolve to the the same result. When the app initially launches the users playlist area should be empty. When the page gets reloaded the previous playlist should be recalled from client-side storage (see R4.1).</p>
+<p><span class="badge badge-success"><span class="requirement">R3.2</span></span> When the client types a song title into the labelled text box and presses the &quot;submit&quot; button or hits the enter key the search results heading and area should be updated, with new song data obtained from the server. The current playlist should not be affected by this operation.</p>
+<p><span class="badge badge-success"><span class="requirement">R3.3</span></span> The song search results should be displayed as an html table with the four columns described in the layout requirements. The artwork of the song should appear as an image in the table. </p>
+<p><span class="badge badge-success"><span class="requirement">R3.4</span></span> If the &quot;+&quot; button of a song in the search results area is pressed then that song should be added to the bottom of the user's playlist. The page should update right away when the &quot;+&quot; button is pressed.</p>
+<p><span class="badge badge-success"><span class="requirement">R3.5</span></span> If the &quot;-&quot; button of a song in the user's playlist is pressed that song should be removed from the the user's playlist  and the number of rows in the playlist table should shrink. The page should update right away when the &quot;-&quot; button is pressed.</p>
+<p><span class="badge badge-success"><span class="requirement">R3.6</span></span> The songs in the playlist area are considered to be in order. If a song's &quot;up arrow&quot; button is pressed that song should move up one position in the the user's playlist table. If the song is already at the top position the button press can be ignored. The page should update right away when the &quot;up arrow&quot; button is pressed.</p>
+<p><span class="badge badge-success"><span class="requirement">R3.7</span></span>  If a playlist song's &quot;down arrow&quot; button is pressed that song should move down one position in the the user's playlist table. If the song is already at the bottom position the button press can be ignored. The page should update right away when the &quot;down arrow&quot; button is pressed.</p>
+<p>&nbsp;</p>
+<h2>4) Client-Side Persistence Requirements</h2>
+<p><span class="badge badge-success"><span class="requirement">R4.1</span></span> The playlist should be remembered if the webpage is closed and reloaded. That is, the playlist should be remembered across browser sessions on the client-side. This should work if either the page is reloaded or the browser is closed and re-opened. This should be implemented using client-side local storage. To implement this you should study this example: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</a>. For this assignment the storage is NOT on the server side. The server is stateless and should have no awareness of what playlists clients are creating and remembering locally. </p>
+<p>Note the that the memory can expire -that is, you can allow the playlist to be forgotten after an expiry period or date.</p>
+<p>&nbsp;</p>
+</div>
+</body>
+</html>
